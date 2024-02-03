@@ -19,7 +19,7 @@ if (choixListe === "mots") {
     }
 } else {
     for (let i = 0; i < listePhrases.length; i++) {
-        let phraseUtilisateur = prompt("Entrez la phrase : " + listePhrases[i]);
+        let phraseUtilisateur = prompt("Entrez la phrase : " + listePhrases[i]); // Demande de la phrase
         if (phraseUtilisateur === listePhrases[i]) {
             score++;
         }
