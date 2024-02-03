@@ -31,6 +31,7 @@ shash_table_t *shash_table_create(unsigned long int size)
  * @value: The value corresponding to the key
  * Return: 1 if success, 0 if failure
  */
+
 int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 {
 	shash_node_t *new_node, *tmp;
@@ -66,31 +67,6 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 	}
 	new_node->next = ht->array[index];
 	ht->array[index] = new_node;
-	if (!ht->shead)
-	{
-		ht->shead = new_node;
-		ht->stail = new_node;
-		return (1);
-	}
-	if (strcmp(new_node->key, ht->shead->key) < 0)
-	{
-		new_node->snext = ht->shead;
-		ht->shead->sprev = new_node;
-		ht->shead = new_node;
-	}
-	else
-	{
-		tmp = ht->shead;
-		while (tmp->snext && strcmp(new_node->key, tmp->snext->key) > 0)
-			tmp = tmp->snext;
-		new_node->sprev = tmp;
-		new_node->snext = tmp->snext;
-		if (tmp->snext)
-			tmp->snext->sprev = new_node;
-		else
-			ht->stail = new_node;
-		tmp->snext = new_node;
-	}
 	return (1);
 }
 
